@@ -62,6 +62,41 @@ avg = mean2(img);
 i2 = im2double(img);
 %contr1 = 1./(1+(avg./(i2+eps)).^4)
 contr1 = 1./(1+(mean2(im2double(img))./((im2double(img)+eps)).^4));
+figure(8)
+imshow(contr1);
+
+imgZ = zeros(128,128);
+imgZ(32:96,32:96) = 255;
+[g,t]=edge(imgZ,'sobel','vertical');
+[g1,t1]=edge(imgZ,'sobel','horizontal');
+[g2,t2]=edge(imgZ,'canny',[],1);
+
+figure(9)
+imshow(g)
+
+figure(10)
+imshow(g1)
+
+figure(11)
+imshow(g2)
+
+% for idx = 1:50:255
+%     temp=im2double(img);
+%     J = idx*log(1+temp);
+%     figure(idx+9);
+%     imshow(J);
+% end    
+
+for idx = 1:9
+    filt = {'gaussian', 'sobel', 'prewitt', 'laplacian', 'log', 'average', 'unsharp', 'disk', 'motion'};
+    if strcmp(char(filt{idx}),'motion')
+      krnl = fspecial(char(filt{idx}),20,45);  
+    end  
+    krnl = fspecial(char(filt{idx}));
+    flt = imfilter(img,krnl);
+    figure(20+idx);
+    imshow(flt);
+end
 %for log transform, output = c*log(1+double(input)), 1 is added to handle
 %log(0) issues
 
