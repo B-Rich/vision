@@ -25,7 +25,7 @@ subplot(2,2,1)
 imshow(gammaTrns1);
 title('\Gamma = 0.4')
 
-gammaTrns2 = imadjust(img,[],[],1);
+gammaTrns2 = imadjust(img,[k],[],1);
 gTrns2 = imadjust(l,[],[],1);
 figure(3)
 subplot(2,2,2)
@@ -86,6 +86,8 @@ imshow(g2)
 %     figure(idx+9);
 %     imshow(J);
 % end    
+%imshow((log(1+im2double(img))),[]); normalized output in imshow using
+%imshow(image,[])
 
 for idx = 1:9
     filt = {'gaussian', 'sobel', 'prewitt', 'laplacian', 'log', 'average', 'unsharp', 'disk', 'motion'};
@@ -113,4 +115,6 @@ end
 %plot(gammaTrns,g)
 %title(strcat('Subplot',num2str(g)))
 %end
+
+%subplot(1,2,1); imshow(imfilter(img,fspecial('prewitt'))); subplot(1,2,2); imshow(imfilter(img,fspecial('sobel')));
 
