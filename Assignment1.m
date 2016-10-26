@@ -16,10 +16,10 @@ kutoffA = str2double(inputdlg('Please insert the first cutoff frequency','First 
 kutoffB = str2double(inputdlg('Please insert the second cutoff frequency','Second cutoff frequency',[1],{'3'}));
 krnl1 = fspecial('gaussian',4*kutoffA+1,kutoffA); %1 or 3 would get even numbers
 krnl2 = fspecial('gaussian',4*kutoffB+1,kutoffB);
-L_1 = imXfilter(img1,krnl1,'replicate');
-H_2 = img2 - imXfilter(img2,krnl2,'replicate');
-H_X = L_1 + H_2;
-figure(1);
+L_1 = uint8(imXfilter(img1,krnl1,'replicate'));
+H_2 = uint8(double(img2) - imXfilter(img2,krnl2,'replicate'));
+H_X = uint8(L_1 + H_2);
+figure;
 title('Hybrid Image');
 imshow(H_X);
 
