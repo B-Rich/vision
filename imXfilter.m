@@ -39,14 +39,14 @@ for idx = 1:size(img,3)
     if strcmp(paddingType, 'zero')
         paddedImg = padarray(img(:, :, idx), padsize);
     end    
-    if strcmp(paddingType, 'replicate') || strcmp(paddingType, 'symmetric') || strcmp(paddingType, 'duplicate')
+    if strcmp(paddingType, 'replicate') || strcmp(paddingType, 'duplicate')
         paddedImg = padarray(img(:, :, idx), padsize, 'symmetric');
     end
     
     %dot product the padded image (in the form of a vector) with the kernel/filter
     
-    columned = krnl(:)'*im2col(paddedImg, size(krnl), 'sliding');
-    buffer(:,:,idx) = col2im(columned, [1 1], [size(img,1) size(img,2)], 'sliding');
+    columned = double(krnl(:))'*double(im2col(paddedImg, size(krnl), 'sliding'));
+    buffer(:,:,idx) = double(col2im(double(columned), [1 1], [size(img,1) size(img,2)], 'sliding'));
 end
 fImg = buffer;
 end
