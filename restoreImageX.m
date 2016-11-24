@@ -31,8 +31,8 @@ pX = c(:,1);
 pY = c(:,2);%Temp = sqrt((x-(size(grayScale,1)/2)).^2 + (y-(size(grayScale,2)/2)).^2)<=
 
 %Get origin point
-oX = size(Noise,1)/2;
-oY = size(Noise,2)/2;
+oX = size(Noise,2)/2;
+oY = size(Noise,1)/2;
 
 %Exclude points(using a distance metric) to reduce number of filters
 DTest = sqrt((pX-oX).^2 + (pY-oY).^2)<=((size(Noise,2)/2.35)+max(r));
