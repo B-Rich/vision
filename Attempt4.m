@@ -43,6 +43,6 @@ Upper = imdilate(Upper,strel('disk',15,8));%imdilate(~Upper,strel('disk',20,8));
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 figure,
-subplot(1,3,1), imshow(~Upper,[]), title('Yin');
-subplot(1,3,2), imshow(~Lower,[]), title('Yang');
+subplot(1,3,1), imshow(Lower,[]), title('Yin');
+subplot(1,3,2), imshow(Upper,[]), title('Yang');
 subplot(1,3,3), imshow(binImg,[]), title('Yinyang');
